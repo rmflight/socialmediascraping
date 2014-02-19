@@ -3,6 +3,8 @@
   %\VignetteIndexEntry{Setting Up Accounts}
 -->
 
+# Twitter
+
 ```{r twitteR}
 library(twitteR)
 ```
@@ -41,5 +43,33 @@ Note that we have saved the credentials to a file that again is not part of the 
 load("keys/twitteRCredentials.RData")
 registerTwitterOAuth(twitterCredentials)
 testTweets <- homeTimeline()
+```
+
+# Facebook
+
+Set up a Facebook app at https://developers.facebook.com/apps. Fill in the information. 
+
+Again, I have the ID and secret in text files that are not part of the package. During authorization, you will need to go into your Facebook app, 
+
+```{r installSetup, eval=FALSE}
+install.packages("Rfacebook")
+install.packages("Rook")
+library(Rfacebook)
+appID <- scan("keys/facebookID.txt", what="character", n=1)
+appSecret <- scan("keys/facebookSecret.txt", what="character", n=1)
+```
+
+Under `Settings` -> `Basic` -> `Add Platform`, select `Website`, and put in the web address that was supplied above (mine was http://localhost:1410/), and hit enter to continue.
+
+```{r authorizeFacebook, eval=FALSE}
+fbAuth <- fbOAuth(app_id=appID, app_secret=appSecret)
+save(fbAuth, file="keys/facebookCredentials.RData")
+```
+
+```{r checkLoading, eval=FALSE}
+load("keys/facebookCredentials.RData")
+me <- getUsers("me", token=fbAuth)
+me
+news <- getNewsfeed(fbAuth)
 ```
 
