@@ -1,0 +1,12 @@
+Package: socialmediascraping
+Type: Package
+Title: Various functions for scraping and storing my own social media
+        stuff
+Version: 0.0.1
+Date: 2014-02-18
+Author: Robert M Flight <rflight79@gmail.com>
+Maintainer: Robert M Flight <rflight79@gmail.com>
+Description: Functions and scripts for getting data from twitter,
+        facebook, etc, and storing it somewhere else
+License: CC0
+VignetteBuilder: knitr
