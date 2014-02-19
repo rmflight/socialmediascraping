@@ -1,0 +1,45 @@
+<!--
+  %\VignetteEngine{knitr}
+  %\VignetteIndexEntry{Setting Up Accounts}
+-->
+
+```{r twitteR}
+library(twitteR)
+```
+
+Set up a `twitter` app at https://dev.twitter.com/apps
+
+Fill in all the pertinent information.
+
+To get OAuth tokens, go to `Test OAuth`, and it will show you the `consumer key` and `consumer secret`. I stored these in a folder that is not part of the package, in `keys/tokent.txt` and `keys/secret.txt`, respectively.
+
+```{r handshake, eval=FALSE}
+requestURL <- "https://api.twitter.com/oauth/request_token"
+accessURL <- "https://api.twitter.com/oauth/access_token"
+authURL <- "https://api.twitter.com/oauth/authorize"
+
+token <- scan("keys/twitterToken.txt", what="character", n=1)
+secret <- scan("keys/twitterSecret.txt", what="character", n=1)
+
+twitterCredentials <- OAuthFactory$new(consumerKey=token,
+                                       consumerSecret=secret,
+                                       requestURL=requestURL,
+                                       accessURL=accessURL,
+                                       authURL=authURL)
+
+twitterCredentials$handshake()
+registerTwitterOAuth(twitterCredentials)
+
+testTweets <- homeTimeline()
+
+save(twitterCredentials, file="keys/twitteRCredentials.RData") # saves for further use
+```
+
+Note that we have saved the credentials to a file that again is not part of the package. If we want to use our credentials later, we simply re-load them.
+
+```{r reload, eval=FALSE}
+load("keys/twitteRCredentials.RData")
+registerTwitterOAuth(twitterCredentials)
+testTweets <- homeTimeline()
+```
+
