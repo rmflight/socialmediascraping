@@ -1,0 +1,12 @@
+<!--
+  %\VignetteEngine{knitr}
+  %\VignetteIndexEntry{Scraping Twitter}
+-->
+
+# Scraping Twitter
+
+My goals in scraping my twitter feed are:
+
+* Archive my own feed for future searching and review
+* Getting out links from favorited tweets so I can read them later
+* Archiving tweets with specific hashtags from conferences especially
