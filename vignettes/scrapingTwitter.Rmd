@@ -9,4 +9,14 @@ My goals in scraping my twitter feed are:
 
 * Archive my own feed for future searching and review
 * Getting out links from favorited tweets so I can read them later
-* Archiving tweets with specific hashtags from conferences especially
+* Archiving tweets with specific hashtags from conferences and other things of interest
+
+The plan is for each type of archiving to have a separate `Rscript` that runs each one, so that each can be controlled by a separate `cron` job and they not step on each others toes. In addition, the actual archive files will be separate, so that we don't have to worry about access control, writing at the same time, etc.
+
+## Limits
+
+The twitter 1.1 api states that an application can make 15 requests every 15 minutes. So in **archiving** my own feed, I don't imagine making requests more than **once an hour**. **Favorites** can probably be archived morning and night (every **12 hours**), and hashtags can probably also be done once an hour (or less) depending on the hashtag. 
+
+## Archiving my own feed
+
+I want to maintain an archive of my own feed
