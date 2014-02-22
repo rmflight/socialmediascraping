@@ -2,7 +2,7 @@ Package: socialmediascraping
 Type: Package
 Title: Various functions for scraping and storing my own social media
         stuff
-Version: 0.0.2
+Version: 0.0.3
 Date: 2014-02-18
 Author: Robert M Flight <rflight79@gmail.com>
 Maintainer: Robert M Flight <rflight79@gmail.com>

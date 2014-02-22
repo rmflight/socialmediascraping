@@ -73,3 +73,16 @@ me
 news <- getNewsfeed(fbAuth)
 ```
 
+
+
+## SSL Cert Error
+
+If you get an SSL certification error, then you should run:
+
+```{r sslrecert}
+library(RCurl) 
+
+# Set SSL certs globally
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+```
+
