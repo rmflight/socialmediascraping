@@ -19,4 +19,14 @@ The twitter 1.1 api states that an application can make 15 requests every 15 min
 
 ## Archiving my own feed
 
-I want to maintain an archive of my own feed
+I want to maintain an archive of my own feed from here on out. But not just my own tweets, but my actual user stream.
+
+```{r archiveTwitterFeed}
+archiveLoc <- "C:/Users/rmflight/Documents/coding_projects/socialmediaArchive/twitter"
+library(twitteR)
+load("keys/twitteRCredentials.RData")
+
+currTweets <- load("../")
+
+```
+
