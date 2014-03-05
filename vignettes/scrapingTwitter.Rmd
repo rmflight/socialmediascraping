@@ -26,7 +26,24 @@ archiveLoc <- "C:/Users/rmflight/Documents/coding_projects/socialmediaArchive/tw
 library(twitteR)
 load("keys/twitteRCredentials.RData")
 
-currTweets <- load("../")
+registerTwitterOAuth(twitterCredentials)
+```
 
+```{r homeFeed}
+homeData <- file.path(archiveLoc, "homeData.RData")
+homeText <- file.path(archiveLoc, "homeText.txt")
+
+load(homeData)
+
+allID <- as.numeric(sapply(currTweets, function(x){x$id}))
+lastID <- as.character(max(allID))
+
+newTweets <- homeTimeline(n=100, sinceID=lastID)
+currTweets <- c(currTweets, newTweets)
+save(currTweets, file=homeData)
+
+textTweets <- lapply(newTweets, textTweet)
+textTweets <- paste(textTweets, sep="", collapse="\n")
+cat(textTweets, file=homeText, append=TRUE)
 ```
 
